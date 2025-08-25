@@ -5,16 +5,14 @@ public class ItemBase {
     protected Item item;
 
     public static ItemBase create(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            return new AgedBrie(item);
+        switch (item.name) {
+            case "Aged Brie":
+                return new AgedBrie(item);
+            case "Backstage passes to a TAFKAL80ETC concert":
+                return new BackstagePasses(item);
+            case "Sulfuras, Hand of Ragnaros":
+                return new Sulfuras(item);
         }
-        if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            return new BackstagePasses(item);
-        }
-        if(item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return new Sulfuras(item);
-        }
-
         return new ItemBase(item);
     }
 
@@ -37,7 +35,7 @@ public class ItemBase {
     }
 
     protected void refreshExpiration() {
-        item.sellIn = item.sellIn - 1;
+        item.sellIn--;
     }
 
     protected void updateExpired() {
@@ -46,13 +44,13 @@ public class ItemBase {
 
     protected void increaseQuality() {
         if (item.quality < 50) {
-            item.quality = item.quality + 1;
+            item.quality++;
         }
     }
 
     protected void decreaseQuality() {
         if (item.quality > 0) {
-            item.quality = item.quality - 1;
+            item.quality--;
         }
     }
 
