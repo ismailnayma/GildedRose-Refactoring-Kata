@@ -5,51 +5,52 @@ public class ItemBase {
     private Item item;
 
     public ItemBase(Item item) {
+        this.item = item;
     }
 
-    public void updateItem(Item item) {
-        refreshQuality(item);
+    public void updateItem() {
+        refreshQuality();
 
-        refreshExpiration(item);
+        refreshExpiration();
 
-        if (isExpired(item)) {
-            updateExpired(item);
+        if (isExpired()) {
+            updateExpired();
         }
     }
 
-    protected void refreshQuality(Item item) {
+    protected void refreshQuality() {
         switch (item.name) {
             case "Aged Brie":
-                increaseQuality(item);
+                increaseQuality();
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                increaseQuality(item);
+                increaseQuality();
                 if (item.sellIn < 11) {
-                    increaseQuality(item);
+                    increaseQuality();
                 }
                 if (item.sellIn < 6) {
-                    increaseQuality(item);
+                    increaseQuality();
                 }
                 break;
             case "Sulfuras, Hand of Ragnaros":
                 return;
             default:
-                decreaseQuality(item);
+                decreaseQuality();
                 break;
         }
     }
 
-    protected void refreshExpiration(Item item) {
+    protected void refreshExpiration() {
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
         item.sellIn = item.sellIn - 1;
     }
 
-    protected void updateExpired(Item item) {
+    protected void updateExpired() {
         switch (item.name) {
             case "Aged Brie":
-                increaseQuality(item);
+                increaseQuality();
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 item.quality = 0;
@@ -57,24 +58,24 @@ public class ItemBase {
             case "Sulfuras, Hand of Ragnaros":
                 return;
             default:
-                decreaseQuality(item);
+                decreaseQuality();
                 break;
         }
     }
 
-    protected void increaseQuality(Item item) {
+    protected void increaseQuality() {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
     }
 
-    protected void decreaseQuality(Item item) {
+    protected void decreaseQuality() {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }
     }
 
-    protected boolean isExpired(Item item) {
+    protected boolean isExpired() {
         return item.sellIn < 0;
     }
 
