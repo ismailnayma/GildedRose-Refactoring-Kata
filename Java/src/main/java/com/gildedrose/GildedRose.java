@@ -53,9 +53,10 @@ class GildedRose {
     }
 
     private static void refreshExpiration(Item item) {
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.sellIn = item.sellIn - 1;
+        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
         }
+        item.sellIn = item.sellIn - 1;
     }
 
     private static void updateExpired(Item item) {
