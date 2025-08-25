@@ -53,9 +53,6 @@ public class ItemBase {
 
     protected void updateExpired() {
         switch (item.name) {
-            case "Aged Brie":
-                increaseQuality();
-                break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 item.quality = 0;
                 break;

@@ -9,4 +9,9 @@ public class AgedBrie extends ItemBase {
     protected void refreshQuality() {
         increaseQuality();
     }
+
+    @Override
+    protected void updateExpired() {
+        increaseQuality();
+    }
 }
