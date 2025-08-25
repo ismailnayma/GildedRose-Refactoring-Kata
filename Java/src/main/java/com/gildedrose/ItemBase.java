@@ -2,12 +2,16 @@ package com.gildedrose;
 
 public class ItemBase {
 
-    private Item item;
+    protected Item item;
 
     public static ItemBase create(Item item) {
         if (item.name.equals("Aged Brie")) {
             return new AgedBrie(item);
         }
+        if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            return new BackstagePasses(item);
+        }
+
         return new ItemBase(item);
     }
 
@@ -27,15 +31,6 @@ public class ItemBase {
 
     protected void refreshQuality() {
         switch (item.name) {
-            case "Backstage passes to a TAFKAL80ETC concert":
-                increaseQuality();
-                if (item.sellIn < 11) {
-                    increaseQuality();
-                }
-                if (item.sellIn < 6) {
-                    increaseQuality();
-                }
-                break;
             case "Sulfuras, Hand of Ragnaros":
                 return;
             default:
@@ -53,9 +48,6 @@ public class ItemBase {
 
     protected void updateExpired() {
         switch (item.name) {
-            case "Backstage passes to a TAFKAL80ETC concert":
-                item.quality = 0;
-                break;
             case "Sulfuras, Hand of Ragnaros":
                 return;
             default:
