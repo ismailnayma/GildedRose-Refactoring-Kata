@@ -8,6 +8,10 @@ public class ItemBase {
         this.item = item;
     }
 
+    public static ItemBase create(Item item) {
+        return new ItemBase(item);
+    }
+
     public void updateItem() {
         refreshQuality();
 
