@@ -4,12 +4,15 @@ public class ItemBase {
 
     private Item item;
 
-    public ItemBase(Item item) {
-        this.item = item;
+    public static ItemBase create(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            return new AgedBrie(item);
+        }
+        return new ItemBase(item);
     }
 
-    public static ItemBase create(Item item) {
-        return new ItemBase(item);
+    public ItemBase(Item item) {
+        this.item = item;
     }
 
     public void updateItem() {
@@ -24,9 +27,6 @@ public class ItemBase {
 
     protected void refreshQuality() {
         switch (item.name) {
-            case "Aged Brie":
-                increaseQuality();
-                break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 increaseQuality();
                 if (item.sellIn < 11) {
