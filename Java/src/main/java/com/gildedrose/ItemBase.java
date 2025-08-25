@@ -12,6 +12,8 @@ public class ItemBase {
                 return new BackstagePasses(item);
             case "Sulfuras, Hand of Ragnaros":
                 return new Sulfuras(item);
+            case "Conjured Mana Cake":
+                return new Conjured(item);
         }
         return new ItemBase(item);
     }

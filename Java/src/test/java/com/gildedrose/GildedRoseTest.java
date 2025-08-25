@@ -384,7 +384,6 @@ class GildedRoseTest {
     }
 
     @Nested
-    @Disabled("Pending Conjured implementation (degrades twice as fast as normal)")
     class Conjured {
         @Test
         void conjured_degrades_twice_as_fast_before_sell_date() {
