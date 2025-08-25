@@ -11,6 +11,9 @@ public class ItemBase {
         if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             return new BackstagePasses(item);
         }
+        if(item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return new Sulfuras(item);
+        }
 
         return new ItemBase(item);
     }
@@ -30,30 +33,15 @@ public class ItemBase {
     }
 
     protected void refreshQuality() {
-        switch (item.name) {
-            case "Sulfuras, Hand of Ragnaros":
-                return;
-            default:
-                decreaseQuality();
-                break;
-        }
+        decreaseQuality();
     }
 
     protected void refreshExpiration() {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
         item.sellIn = item.sellIn - 1;
     }
 
     protected void updateExpired() {
-        switch (item.name) {
-            case "Sulfuras, Hand of Ragnaros":
-                return;
-            default:
-                decreaseQuality();
-                break;
-        }
+        decreaseQuality();
     }
 
     protected void increaseQuality() {
