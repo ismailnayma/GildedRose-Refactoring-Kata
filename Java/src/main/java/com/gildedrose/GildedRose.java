@@ -45,13 +45,10 @@ class GildedRose {
                     }
                 }
             }
-        }else {
-            if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                return;
-            }
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
+        }else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        } else if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 
