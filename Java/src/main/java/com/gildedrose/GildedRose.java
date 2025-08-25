@@ -24,20 +24,24 @@ class GildedRose {
     }
 
     private static void refreshQuality(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
-        }else if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
-            increaseQuality(item);
-            if (item.sellIn < 11) {
+        switch (item.name) {
+            case "Aged Brie":
                 increaseQuality(item);
-            }
-            if (item.sellIn < 6) {
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                increaseQuality(item);
+                if (item.sellIn < 11) {
                     increaseQuality(item);
-            }
-        }else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        } else if (item.quality > 0) {
-            item.quality = item.quality - 1;
+                }
+                if (item.sellIn < 6) {
+                    increaseQuality(item);
+                }
+                break;
+            case "Sulfuras, Hand of Ragnaros":
+                return;
+            default:
+                decreaseQuality(item);
+                break;
         }
     }
 
@@ -49,16 +53,24 @@ class GildedRose {
     }
 
     private static void updateExpired(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            item.quality = 0;
-        } else {
-            if (item.quality > 0) {
-                if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                    item.quality = item.quality - 1;
-                }
-            }
+        switch (item.name) {
+            case "Aged Brie":
+                increaseQuality(item);
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                item.quality = 0;
+                break;
+            case "Sulfuras, Hand of Ragnaros":
+                return;
+            default:
+                decreaseQuality(item);
+                break;
+        }
+    }
+
+    private static void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 
